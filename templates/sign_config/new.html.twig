@@ -4,9 +4,9 @@
 
 {% block body %}
     <h1>Create new SignConfig</h1>
+    
+    {{ include('config/_form.html.twig') }}
 
-    {{ include('sign_config/_form.html.twig') }}
-    {# {{ include('stapling_config/_form.html.twig') }} #}
 
     <a href="{{ path('app_sign_config_index') }}">back to list</a>
 {% endblock %}
