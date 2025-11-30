@@ -18,8 +18,7 @@ final class StaplingConfigController extends AbstractController
     public function __construct(
         private readonly EntityManagerInterface $entityManager,
         private readonly StaplingConfigQueryGenerator $staplingConfigQueryGenerator,
-    ) {
-    }
+    ) {}
 
     #[Route(name: 'app_stapling_config_index', methods: ['GET'])]
     public function index(): Response
@@ -80,7 +79,7 @@ final class StaplingConfigController extends AbstractController
     #[Route('/{id}', name: 'app_stapling_config_delete', methods: ['POST'])]
     public function delete(Request $request, StaplingConfig $staplingConfig): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$staplingConfig->getId(), $request->getPayload()->getString('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $staplingConfig->getId(), $request->getPayload()->getString('_token'))) {
             $this->entityManager->remove($staplingConfig);
             $this->entityManager->flush();
         }

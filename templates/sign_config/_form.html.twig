@@ -1,8 +1,8 @@
 {{ form_start(form) }}
-  {{ form_row(form.slug) }}
+{{ form_row(form.slug) }}
 
-  {% set formCollectionController = 'form-collection' %}
-  <div
+{% set formCollectionController = 'form-collection' %}
+<div
     class="mb-3"
     data-controller="{{ formCollectionController }}"
     data-{{ formCollectionController }}-index-value="{{ form.rules|length > 0 ? form.rules|last.vars.name + 1 : 0 }}"
@@ -16,14 +16,14 @@
         {{ form_widget(rule) }}
       {% endfor %}
     </div>
-    
+
     <button
       type="button"
       class="btn btn-primary"
       data-action="click->{{ formCollectionController }}#addCollectionElement"
     >+
     </button>
-  </div>
+</div>
 
   <button
     class="btn btn-success"
