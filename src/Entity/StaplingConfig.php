@@ -2,13 +2,14 @@
 
 namespace App\Entity;
 
+use App\Config\RuleConfigInterface;
 use App\Repository\StaplingConfigRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: StaplingConfigRepository::class)]
-class StaplingConfig
+class StaplingConfig implements RuleConfigInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]

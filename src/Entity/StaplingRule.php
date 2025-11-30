@@ -4,10 +4,11 @@ namespace App\Entity;
 
 use App\Enum\MetadataEnum;
 use App\Repository\StaplingRuleRepository;
+use App\Rule\RuleInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: StaplingRuleRepository::class)]
-class StaplingRule
+class StaplingRule implements RuleInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -92,5 +93,14 @@ class StaplingRule
         $this->staplingConfig = $staplingConfig;
 
         return $this;
+    }
+
+    public function getField(): string
+    {
+        return $this->metadata->value;
+    }
+    public function getRawValue(): string
+    {
+        return $this->value;
     }
 }
