@@ -6,8 +6,13 @@
 {% block body %}
 	<h1>Edit SignConfig</h1>
 
-	{{ include('sign_config/_form.html.twig', {'button_label': 'Update'}) }}
-	{{ include('sign_config/_delete_form.html.twig') }}
+    {{ include('config/_form.html.twig', {'button_label': 'Update'}) }}
+	
+    {{ include('config/_delete_form.html.twig', {
+        config: sign_config,
+        delete_route: 'app_sign_config_delete'
+        })
+    }}
 
 	<a class="btn btn-secondary" href="{{ path('app_sign_config_index') }}">Back to list</a>
 	<a class="btn btn-warning" href="{{ path('app_sign_config_generate_query', {'id': sign_config.id}) }}">Generate query</a>

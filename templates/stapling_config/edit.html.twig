@@ -4,10 +4,14 @@
 
 {% block body %}
   <h1>Edit StaplingConfig</h1>
+  
+  {{ include('config/_form.html.twig', {'button_label': 'Update'}) }}
 
-  {{ include('stapling_config/_form.html.twig', {'button_label': 'Update'}) }}
-
-  {{ include('stapling_config/_delete_form.html.twig') }}
+  {{ include('config/_delete_form.html.twig', {
+      config: stapling_config,
+      delete_route: 'app_stapling_config_delete'
+    })
+  }}
 
   <a
     class="btn btn-secondary"
