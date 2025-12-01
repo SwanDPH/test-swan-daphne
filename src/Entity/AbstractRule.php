@@ -1,0 +1,92 @@
+<?php
+
+namespace App\Entity;
+
+use App\Enum\MetadataEnum;
+use App\Rule\RuleInterface;
+use Doctrine\ORM\Mapping as ORM;
+
+#[ORM\MappedSuperclass]
+abstract class AbstractRule implements RuleInterface
+{
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
+    protected ?int $id = null;
+
+    #[ORM\Column(length: 255)]
+    protected ?string $glueOperator = null;
+
+    #[ORM\Column(length: 255)]
+    protected ?string $comparisonOperator = null;
+
+    #[ORM\Column(length: 255)]
+    protected ?string $value = null;
+
+    #[ORM\Column(type: 'string', length: 255, enumType: MetadataEnum::class)]
+    protected MetadataEnum $metadata;
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getGlueOperator(): ?string
+    {
+        return $this->glueOperator;
+    }
+
+    public function setGlueOperator(string $glueOperator): static
+    {
+        $this->glueOperator = $glueOperator;
+
+        return $this;
+    }
+
+    public function getComparisonOperator(): ?string
+    {
+        return $this->comparisonOperator;
+    }
+
+    public function setComparisonOperator(string $comparisonOperator): static
+    {
+        $this->comparisonOperator = $comparisonOperator;
+
+        return $this;
+    }
+
+    public function getValue(): ?string
+    {
+        return $this->value;
+    }
+
+    public function setValue(string $value): static
+    {
+        $this->value = $value;
+
+        return $this;
+    }
+
+    public function getRawValue(): string
+    {
+        return $this->value ?? '';
+    }
+
+    public function getField(): string
+    {
+        return $this->metadata->value;
+    }
+
+
+    public function getMetadata(): MetadataEnum
+    {
+        return $this->metadata;
+    }
+
+    public function setMetadata(MetadataEnum $metadata): static
+    {
+        $this->metadata = $metadata;
+
+        return $this;
+    }
+}
