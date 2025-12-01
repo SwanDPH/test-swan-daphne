@@ -7,17 +7,13 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Config\RuleConfigInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use App\Entity\Traits\EntityBaseTrait;
 
 #[ORM\Entity(repositoryClass: SignConfigRepository::class)]
 class SignConfig implements RuleConfigInterface
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $slug = null;
+    use EntityBaseTrait;
 
     /**
      * @var Collection<int, SignRule>

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Config\RuleConfigInterface;
+use App\Entity\Traits\EntityBaseTrait;
 use App\Repository\StaplingConfigRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -11,13 +12,8 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: StaplingConfigRepository::class)]
 class StaplingConfig implements RuleConfigInterface
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $slug = null;
+    use EntityBaseTrait;
 
     /**
      * @var Collection<int, StaplingRule>
