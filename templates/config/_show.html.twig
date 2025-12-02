@@ -1,0 +1,70 @@
+{# templates/config/_show_common.html.twig #}
+
+<h1>{{ configTitle }}</h1>
+
+<table class="table">
+    <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ config.id }}</td>
+        </tr>
+        <tr>
+            <th>Slug</th>
+            <td>{{ config.slug }}</td>
+        </tr>
+    </tbody>
+</table>
+
+{% if config.rules is defined %}
+    <h2>Rules</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Field</th>
+                <th>Glue operator</th>
+                <th>Comparison operator</th>
+                <th>Value</th>
+                {% if show_optional is defined %}
+                        <th>Optional</th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for rule in config.rules %}
+                <tr>
+                    <td>{{ rule.id }}</td>
+                    <td>{{ rule.field }}</td>
+                    <td>{{ rule.glueOperator ?? '-' }}</td>
+                    <td>{{ rule.comparisonOperator ?? '-' }}</td>
+                    <td>{{ rule.rawValue is defined ? rule.rawValue : rule.value }}</td>
+                    {% if rule.optional is defined %}
+                            <td>
+                                {{ rule.optional }}
+                            </td>
+                    {% endif %}
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5" class="text-muted">
+                        No rules defined for this configuration.
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+
+<a class="btn btn-secondary" href="{{ path(index_route) }}">
+    Back to list
+</a>
+
+<a class="btn btn-primary" href="{{ path(edit_route, { id: config.id }) }}">
+    Edit
+</a>
+
+{{ include('config/_delete_form.html.twig', {
+    config: config,
+    delete_route: delete_route
+}) }}

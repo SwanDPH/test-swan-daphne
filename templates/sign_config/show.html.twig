@@ -3,29 +3,12 @@
 {% block title %}SignConfig{% endblock %}
 
 {% block body %}
-    <h1>SignConfig</h1>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ sign_config.id }}</td>
-            </tr>
-            <tr>
-                <th>Slug</th>
-                <td>{{ sign_config.slug }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a class="btn btn-secondary" href="{{ path('app_sign_config_index') }}">Back to list</a>
-
-    <a class="btn btn-primary" href="{{ path('app_sign_config_edit', {'id': sign_config.id}) }}">edit</a>
-    
-    {{ include('config/_delete_form.html.twig', {
+    {% include 'config/_show.html.twig' with {
+        configTitle: 'SignConfig',
         config: sign_config,
-        delete_route: 'app_sign_config_delete'
-        })
-    }}
-
+        index_route: 'app_sign_config_index',
+        edit_route: 'app_sign_config_edit',
+        delete_route: 'app_sign_config_delete',
+        show_optional: true
+    } %}
 {% endblock %}
