@@ -1,0 +1,24 @@
+<h1>Edit {{ configTitle }}</h1>
+
+{{ include('config/_form.html.twig', {
+    button_label: button_label|default('Update')
+}) }}
+
+{{ include('config/_delete_form.html.twig', {
+    config: config,
+    delete_route: delete_route
+}) }}
+
+<a
+    class="btn btn-secondary"
+    href="{{ path(index_route) }}"
+>
+    Back to list
+</a>
+
+<a
+    class="btn btn-warning"
+    href="{{ path(generate_route, { id: config.id }) }}"
+>
+    Generate query
+</a>
